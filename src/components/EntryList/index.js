@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
 
-import EntryListItem from './EntryListItem'
+import EntryListItem from './EntryListItem';
 
 const EntryList = () => {
-  return(
+  return (
     <View>
       <Text style={styles.title}>Últimos Lançamentos</Text>
       <FlatList
