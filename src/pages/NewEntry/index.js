@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, TextInput, StyleSheet, Button} from 'react-native';
 
 import BalanceLabel from '../../components/BalanceLabel';
+import NewEntryInput from './NewEntryInput';
 
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
@@ -48,11 +49,7 @@ const NewEntry = ({navigation}) => {
       <BalanceLabel />
 
       <View>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setAmount(text)}
-          value={amount}
-        />
+        <NewEntryInput value={amount} onChangeValue={setAmount} />
         <TextInput style={styles.input} />
         <Button title="GPS" />
         <Button title="Câmera" />
