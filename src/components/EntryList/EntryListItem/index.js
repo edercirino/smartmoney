@@ -42,7 +42,7 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
         </View>
 
         <View style={styles.description}>
-          <Text style={styles.descriptionText}>{entry.descrption}</Text>
+          <Text style={styles.descriptionText}>{entry.description}</Text>
           <View style={styles.details}>
             <Icon style={styles.entryAtIcon} name="access-time" size={12} />
             <Text style={styles.entryAtText}>{entry.entryAt.toString()}</Text>
