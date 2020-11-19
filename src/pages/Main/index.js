@@ -14,7 +14,8 @@ const Main = ({navigation}) => {
           navigation.navigate('NewEntry');
         }}
       />
-      <EntrySummary />
+
+      <EntrySummary onPressActionButton={() => navigation.navigate('Report')} />
       <EntryList
         onEntryPress={(entry) =>
           navigation.navigate('NewEntry', {
