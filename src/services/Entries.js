@@ -5,22 +5,31 @@ import moment from '../vendors/moment';
 import {getRealm} from './Realm';
 import {getUUID} from './UUID';
 
-export const getEntries = async (days) => {
+export const getEntries = async (days, category) => {
   let realm = await getRealm();
 
-  realm = realm.objects('Entry');
+  try {
+    realm = realm.objects('Entry');
 
-  if (days > 0) {
-    const date = moment().subtract(days, 'days').toDate();
+    if (days > 0) {
+      const date = moment().subtract(days, 'days').toDate();
 
-    realm = realm.filtered('entryAt >= $0', date);
+      realm = realm.filtered('entryAt >= $0', date);
+    }
+
+    if (category && category.id) {
+      console.log('getEntries :: category', JSON.stringify(category));
+      realm = realm.filtered('category == $0', category);
+    }
+
+    const entries = realm.sorted('entryAt', true);
+
+    console.log('getEntries :: entries', JSON.stringify(entries));
+
+    return entries;
+  } catch (error) {
+    console.log(error.message);
   }
-
-  const entries = realm.sorted('entryAt', true);
-
-  console.log('getEntries :: entries', JSON.stringify(entries));
-
-  return entries;
 };
 
 export const saveEntry = async (value, entry = {}) => {

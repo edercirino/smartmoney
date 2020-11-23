@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,15 +9,17 @@ import BalancePanelChart from './BalancePanelChart';
 
 import Colors from '../../styles/Colors';
 
+import useBalance from '../../hooks/useBalance';
+
 const BalancePanel = ({onNewEntryPress}) => {
-  const currentBalance = 2064.35;
+  const [balance] = useBalance();
 
   return (
     <View style={styles.container}>
       <LinearGradient
         colors={[Colors.violet, Colors.blue]}
         style={styles.panel}>
-        <BalancePanelLabel currentBalance={currentBalance} />
+        <BalancePanelLabel currentBalance={balance} />
         <BalancePanelChart />
       </LinearGradient>
       <TouchableOpacity style={styles.button} onPress={onNewEntryPress}>
