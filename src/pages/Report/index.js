@@ -92,7 +92,7 @@ const Report = ({navigation}) => {
         />
       </View>
 
-      <EntrySummary />
+      <EntrySummary days={relativeDays} />
       <EntryList days={relativeDays} category={category} />
 
       <ActionFooter>

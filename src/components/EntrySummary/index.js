@@ -9,7 +9,7 @@ import EntrySummaryList from './EntrySummaryList';
 import useBalanceSumByCategory from '../../hooks/useBalanceSumByCategory';
 
 const EntrySummary = ({days = 7, onPressActionButton}) => {
-  const [balanceSum] = useBalanceSumByCategory();
+  const [balanceSum] = useBalanceSumByCategory(days);
 
   return (
     <Container

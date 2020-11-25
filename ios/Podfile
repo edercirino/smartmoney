@@ -14,6 +14,8 @@ target 'smartmoney' do
 
   pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker'
 
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
   target 'smartmoneyTests' do
     inherit! :complete
     # Pods for testing
