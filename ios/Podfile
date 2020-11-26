@@ -16,6 +16,8 @@ target 'smartmoney' do
 
   pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'smartmoneyTests' do
     inherit! :complete
     # Pods for testing
