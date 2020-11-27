@@ -18,6 +18,8 @@ target 'smartmoney' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
+
   target 'smartmoneyTests' do
     inherit! :complete
     # Pods for testing

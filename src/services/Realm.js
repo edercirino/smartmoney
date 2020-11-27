@@ -4,6 +4,7 @@ import CategorySchema from '../schemas/CategorySchema';
 import EntrySchema from '../schemas/EntrySchema';
 
 import {getDefaultCategories} from './Categories';
+import {cleanInitialized} from './Welcome';
 
 export const getRealm = async () => {
   const realm = await Realm.open({
@@ -12,18 +13,13 @@ export const getRealm = async () => {
   });
 
   // dropDB(realm);
+  // cleanInitialized()
   initDB(realm);
 
   return realm;
 };
 
 export const initDB = (realm) => {
-  //consultar a quantidade de categorias existentes no BD
-  //se = 0
-    //Preencho as categorias
-  // Senão
-    //Não faço nada
-
   const categoriesLength = realm.objects('Category').length;
   console.log(`initDB :: categories length: ${categoriesLength}`);
 

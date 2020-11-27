@@ -10,6 +10,7 @@ import WelcomeBalanceInput from './WelcomeBalanceInput';
 
 import useCategories from '../../hooks/useCategories';
 import {saveEntry} from '../../services/Entries';
+import {setInitialized} from '../../services/Welcome';
 
 import Colors from '../../styles/Colors';
 
@@ -25,6 +26,8 @@ const Welcome = ({navigation}) => {
       isInit: true,
       category: initCategories,
     });
+
+    setInitialized();
     navigation.navigate('Main');
   };
 
