@@ -8,14 +8,25 @@ import ActionFooter, {
 import WelcomeMessage from './WelcomeMessage';
 import WelcomeBalanceInput from './WelcomeBalanceInput';
 
+import useCategories from '../../hooks/useCategories';
+import {saveEntry} from '../../services/Entries';
+
 import Colors from '../../styles/Colors';
 
 import Logo from '../../assets/logo-white.png';
 
 const Welcome = ({navigation}) => {
+  const [, , , initCategories] = useCategories();
   const [amount, setAmount] = useState(0);
 
-  const onSavePress = () => {};
+  const onSavePress = () => {
+    saveEntry({
+      amount: parseFloat(amount),
+      isInit: true,
+      category: initCategories,
+    });
+    navigation.navigate('Main');
+  };
 
   return (
     <View style={styles.container}>
