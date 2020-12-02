@@ -70,11 +70,18 @@ const NewEntryAddressPicker = ({address, onChange}) => {
         {
           text: 'Apagar',
           onPress: () => {
-            onChange({latitude: null, longitude: null, address: null});
+            onChange({
+              latitude: null,
+              longitude: null,
+              address: null,
+            });
           },
-          style: 'cancel',
         },
-        {text: 'Ok', onPress: () => console.log('OK Pressed')},
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+          onPress: () => console.log('Cancel Pressed'),
+        },
       ]);
     } else {
       getPosition();
