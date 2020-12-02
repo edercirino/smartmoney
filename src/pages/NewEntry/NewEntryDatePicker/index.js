@@ -20,13 +20,10 @@ const NewEntryDatePicker = ({value, onChange}) => {
 
   return (
     <View>
-      <TouchableOpacity style={styles.button}>
-        <Icon
-          name="today"
-          size={30}
-          color={Colors.white}
-          onPress={() => setModalVisible(true)}
-        />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setModalVisible(true)}>
+        <Icon name="today" size={30} color={Colors.white} />
       </TouchableOpacity>
 
       <DateTimePicker

@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   amount: {
     justifyContent: 'center',
-    // backgroundColor: Colors.green,
+    marginBottom: 10,
   },
   amountText: {
     fontSize: 14,

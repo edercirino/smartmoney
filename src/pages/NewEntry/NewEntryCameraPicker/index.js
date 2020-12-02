@@ -31,6 +31,7 @@ const NewEntryCameraPicker = ({photo, onChangePhoto}) => {
         onPress={() => setModalVisible(true)}>
         <Icon name="photo-camera" size={30} color={Colors.white} />
       </TouchableOpacity>
+
       <NewEntryCameraPickerModal
         photo={photo}
         isVisible={modalVisible}

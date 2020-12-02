@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 
 import Container from '../Core/Container';
 import EntryListItem from './EntryListItem';
 
 import useEntries from '../../hooks/useEntries';
-
-import {getEntries} from '../../services/Entries';
 
 const EntryList = ({days = 7, category, onEntryPress, onPressActionButton}) => {
   const [entries] = useEntries(days, category);

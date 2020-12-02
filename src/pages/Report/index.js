@@ -100,7 +100,15 @@ const Report = ({navigation}) => {
       </View>
 
       <EntrySummary days={relativeDays} />
-      <EntryList days={relativeDays} category={category} />
+      <EntryList
+        onEntryPress={(entry) =>
+          navigation.navigate('NewEntry', {
+            entry: entry,
+          })
+        }
+        days={relativeDays}
+        category={category}
+      />
 
       <ActionFooter>
         <ActionPrimaryButton
