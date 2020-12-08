@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "98532089216",
+    "project_id": "smartmoney-course",
+    "storage_bucket": "smartmoney-course.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98532089216:android:71dcb0c34baaf61853b565",
+        "android_client_info": {
+          "package_name": "br.com.edercirino.smartmoney_curso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98532089216-m7aacim4qgdt6lsaj3oj1ks8r3qbnmef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkV3VqMkzb9zsf21KHAlXxNbmKfxl9Zcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98532089216-m7aacim4qgdt6lsaj3oj1ks8r3qbnmef.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

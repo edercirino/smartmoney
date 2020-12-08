@@ -1,7 +1,12 @@
 import {useState, useCallback} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
 
-import {getEntries, saveEntry, deleteEntry} from '../services/Entries';
+import {
+  getEntries,
+  addEntry,
+  updateEntry,
+  deleteEntry,
+} from '../services/Entries';
 
 const useEntries = (days = 7, category) => {
   const [entries, setEntries] = useState();
@@ -16,7 +21,7 @@ const useEntries = (days = 7, category) => {
     }, [category, days]),
   );
 
-  return [entries, saveEntry, deleteEntry];
+  return [entries, addEntry, updateEntry, deleteEntry];
 };
 
 export default useEntries;

@@ -1,42 +1,57 @@
 import _ from 'lodash';
 import moment from '../vendors/moment';
 
-import {getRealm} from './Realm';
 import {getUUID} from './UUID';
+import firestore from '@react-native-firebase/firestore';
 
 import Colors from '../styles/Colors';
 
 export const getBalance = async (untilDays = 0) => {
-  const realm = await getRealm();
-
-  let entries = realm.objects('Entry');
+  let querySnapshot;
 
   if (untilDays > 0) {
     const date = moment().subtract(untilDays, 'days').toDate();
 
-    entries = entries.filtered('entryAt < $0', date);
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .endBefore(date)
+      .get();
+  } else {
+    querySnapshot = await firestore().collection('entries').get();
   }
 
-  return entries.sum('amount');
+  return _(querySnapshot.docs).reduce((total, doc) => {
+    return total + doc.data().amount;
+  }, 0);
 };
 
 export const getBalanceSumByDate = async (days) => {
-  const realm = await getRealm();
+  let querySnapshot;
 
-  const startBalance = await getBalance();
-
-  let entries = realm.objects('Entry');
+  const startBalance = (await getBalance(days)) || 0;
 
   if (days > 0) {
     const date = moment().subtract(days, 'days').toDate();
 
-    entries = entries.filtered('entryAt >= $0', date);
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .startAt(date)
+      .get();
+  } else {
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .get();
   }
-  // sort
-  entries = entries.sorted('entryAt');
+
+  let entries = querySnapshot.docs.map((documentSnapshot) =>
+    documentSnapshot.data(),
+  );
 
   entries = _(entries)
-    .groupBy(({entryAt}) => moment(entryAt).format('YYYYMMDD'))
+    .groupBy(({entryAt}) => moment(entryAt.toDate()).format('YYYYMMDD'))
     .map((entry) => _.sumBy(entry, 'amount'))
     .map((amount, index, collection) => {
       return (
@@ -52,15 +67,26 @@ export const getBalanceSumByDate = async (days) => {
 };
 
 export const getBalanceSumByCategory = async (days, showOthers = true) => {
-  const realm = await getRealm();
-
-  let entries = realm.objects('Entry');
+  let querySnapshot;
 
   if (days > 0) {
     const date = moment().subtract(days, 'days').toDate();
 
-    entries = entries.filtered('entryAt >= $0', date);
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .startAt(date)
+      .get();
+  } else {
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .get();
   }
+
+  let entries = querySnapshot.docs.map((documentSnapshot) =>
+    documentSnapshot.data(),
+  );
 
   entries = _(entries)
     .groupBy(({category: {id}}) => id)

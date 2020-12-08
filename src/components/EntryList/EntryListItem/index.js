@@ -15,7 +15,6 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
   const bulletLineHeight = isLastItem ? 25 : 50;
   const showBulletLine = !(isFirstItem && isLastItem);
   const bulletColor = entry.category.color || Colors.white;
-  // const bulletColor = Colors.white;
 
   return (
     <TouchableOpacity
@@ -56,7 +55,11 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
             {entry.address && (
               <>
                 <Icon style={styles.addressIcon} name="person-pin" size={12} />
-                <Text style={styles.addressText}>{entry.address}</Text>
+                <Text style={styles.addressText}>
+                  {entry.address.length > 40
+                    ? entry.address.substring(0, 40 - 3) + '...'
+                    : entry.address}
+                </Text>
               </>
             )}
           </View>

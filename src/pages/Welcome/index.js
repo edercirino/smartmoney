@@ -9,7 +9,7 @@ import WelcomeMessage from './WelcomeMessage';
 import WelcomeBalanceInput from './WelcomeBalanceInput';
 
 import useCategories from '../../hooks/useCategories';
-import {saveEntry} from '../../services/Entries';
+import {addEntry} from '../../services/Entries';
 import {setInitialized} from '../../services/Welcome';
 
 import Colors from '../../styles/Colors';
@@ -21,7 +21,7 @@ const Welcome = ({navigation}) => {
   const [amount, setAmount] = useState(0);
 
   const onSavePress = () => {
-    saveEntry({
+    addEntry({
       amount: parseFloat(amount),
       isInit: true,
       category: initCategories,

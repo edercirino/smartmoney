@@ -32,13 +32,15 @@ const NewEntry = ({route, navigation}) => {
         category: {id: null, name: 'Selecione'},
       };
 
-  const [, saveEntry, deleteEntry] = useEntries();
+  const isEdit = route.params?.isEdit ? route.params.isEdit : false;
+
+  const [, addEntry, updateEntry, deleteEntry] = useEntries();
 
   const [debit, setDebit] = useState(entry.amount <= 0);
   const [amount, setAmount] = useState(entry.amount);
   const [category, setCategory] = useState(entry.category);
   const [entryAt, setEntryAt] = useState(
-    entry.entryAt ? new Date(entry.entryAt) : new Date(),
+    entry.entryAt ? entry.entryAt.calendar() : new Date(),
   );
   const [photo, setPhoto] = useState(entry.photo);
   const [address, setAddress] = useState(entry.address);
@@ -66,7 +68,7 @@ const NewEntry = ({route, navigation}) => {
     };
 
     console.log('NewEntry :: save ', data);
-    saveEntry(data);
+    isEdit ? updateEntry(data) : addEntry(data);
     onClose();
   };
 
