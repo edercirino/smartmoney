@@ -19,7 +19,7 @@ export const ActionPrimaryButton = ({title, onPress}) => {
   );
 };
 
-export const ActionSecundaryButton = ({title, onPress}) => {
+export const ActionSecondaryButton = ({title, onPress}) => {
   return (
     <TouchableOpacity style={styles.secondaryButton} onPress={onPress}>
       <Text style={styles.secondaryButtonText}>{title}</Text>

@@ -2,10 +2,12 @@ import {Alert} from 'react-native';
 
 import moment from '../vendors/moment';
 
-import {getRealm} from './Realm';
 import firestore from '@react-native-firebase/firestore';
 
+import {getUserAuth} from './Auth';
+
 export const getEntries = async (days, category) => {
+  const userAuth = await getUserAuth();
   let querySnapshot;
 
   if (days > 0) {
@@ -13,12 +15,14 @@ export const getEntries = async (days, category) => {
 
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', userAuth)
       .orderBy('entryAt')
       .startAt(date)
       .get();
   } else {
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', userAuth)
       .orderBy('entryAt')
       .get();
   }
@@ -35,7 +39,7 @@ export const getEntries = async (days, category) => {
 };
 
 export const addEntry = async (entry) => {
-  // const realm = await getRealm();
+  const userAuth = await getUserAuth();
   let data = {};
 
   try {
@@ -49,11 +53,11 @@ export const addEntry = async (entry) => {
       longitude: entry.longitude,
       isInit: entry.isInit || false,
       category: entry.category,
+      userId: userAuth,
     };
 
     await firestore().collection('entries').add(data);
   } catch (error) {
-    // console.error('addEntry :: error on save object: ', JSON.stringify(data));
     console.error(error.message);
     Alert.alert('Erro', 'Houve um erro ao salvar os dados de lançamento.');
   }
@@ -62,6 +66,7 @@ export const addEntry = async (entry) => {
 };
 
 export const updateEntry = async (entry) => {
+  const userAuth = await getUserAuth();
   let data = {};
 
   try {
@@ -75,6 +80,7 @@ export const updateEntry = async (entry) => {
       longitude: entry.longitude,
       isInit: entry.isInit || false,
       category: entry.category,
+      userId: userAuth,
     };
 
     await firestore().collection('entries').doc(entry.id).update(data);

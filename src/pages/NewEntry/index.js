@@ -3,7 +3,7 @@ import {View, StatusBar, StyleSheet} from 'react-native';
 
 import ActionFooter, {
   ActionPrimaryButton,
-  ActionSecundaryButton,
+  ActionSecondaryButton,
 } from '../../components/Core/ActionFooter';
 
 import BalanceLabel from '../../components/BalanceLabel';
@@ -120,7 +120,7 @@ const NewEntry = ({route, navigation}) => {
             isValid() && onSave();
           }}
         />
-        <ActionSecundaryButton title="Cancelar" onPress={onClose} />
+        <ActionSecondaryButton title="Cancelar" onPress={onClose} />
       </ActionFooter>
     </View>
   );

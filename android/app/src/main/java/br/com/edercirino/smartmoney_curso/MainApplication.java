@@ -9,7 +9,6 @@ import org.reactnative.camera.RNCameraPackage;
 import com.reactnativecommunity.geolocation.GeolocationPackage;
 import com.reactcommunity.rndatetimepicker.RNDateTimePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import io.realm.react.RealmReactPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
